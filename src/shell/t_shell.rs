@@ -51,11 +51,9 @@ pub async fn holsatus_shell(driver: crate::bsp::UsbPeripheral) {
 
     // Create embassy-usb DeviceBuilder using the driver and config.
     // It needs some buffers for building the descriptors.
-    static DEVICE_DESCRIPTOR: StaticCell<[u8; 256]> = StaticCell::new();
     static CONFIG_DESCRIPTOR: StaticCell<[u8; 256]> = StaticCell::new();
     static BOS_DESCRIPTOR: StaticCell<[u8; 256]> = StaticCell::new();
     static CONTROL_BUF: StaticCell<[u8; 256]> = StaticCell::new();
-    let device_descriptor = DEVICE_DESCRIPTOR.init([0; 256]).as_mut_slice();
     let config_descriptor = CONFIG_DESCRIPTOR.init([0; 256]).as_mut_slice();
     let bos_descriptor = BOS_DESCRIPTOR.init([0; 256]).as_mut_slice();
     let control_buf = CONTROL_BUF.init([0; 256]).as_mut_slice();
@@ -66,7 +64,6 @@ pub async fn holsatus_shell(driver: crate::bsp::UsbPeripheral) {
     let mut usb_builder = Builder::new(
         driver,
         config,
-        device_descriptor,
         config_descriptor,
         bos_descriptor,
         &mut [], // no msos descripto _iors
