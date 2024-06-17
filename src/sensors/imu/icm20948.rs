@@ -1,7 +1,7 @@
 use defmt::*;
 use embassy_rp::{
     i2c::{Async, Error, I2c},
-    peripherals::I2C1,
+    peripherals::I2C0,
 };
 use embassy_time::Delay;
 use icm20948_async::{I2cAddress, Icm20948, Icm20948Config, IcmBusI2c, Init, MagEnabled};
@@ -35,9 +35,9 @@ impl Into<super::types::ImuData6Dof> for icm20948_async::Data9Dof {
 }
 
 pub async fn setup_icm20948(
-    async_i2c_imu: I2c<'_, I2C1, Async>,
+    async_i2c_imu: I2c<'_, I2C0, Async>,
     icm_conf: Icm20948Config,
-) -> Option<Icm20948<IcmBusI2c<I2c<'_, I2C1, Async>>, MagEnabled, Init, Delay, Error>> {
+) -> Option<Icm20948<IcmBusI2c<I2c<'_, I2C0, Async>>, MagEnabled, Init, Delay, Error>> {
     let imu_result = Icm20948::new_i2c_from_cfg(async_i2c_imu, icm_conf, Delay)
         .set_address(I2cAddress::X69)
         .initialize_9dof()

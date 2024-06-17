@@ -58,7 +58,7 @@ async fn main(spawner: embassy_executor::Spawner) {
     spawner.must_spawn(holsatus_flight::t_arm_checker::arm_checker());
 
     // Start the status printer task
-    // spawner.must_spawn(crate::t_status_printer::status_printer());
+    spawner.must_spawn(holsatus_flight::t_status_printer::status_printer());
 
     // Start calibration routine tasks
     spawner.must_spawn(holsatus_flight::t_gyr_calibration::gyr_calibration());

@@ -10,19 +10,19 @@ pub const PAGE_SIZE: usize = embassy_rp::flash::PAGE_SIZE;
 
 // I2c pheripheral for sensors
 
-type I2cPeriph = peripherals::I2C1;
-type I2cSdaPin = peripherals::PIN_2;
-type I2cSclPin = peripherals::PIN_3;
+type I2cPeriph = peripherals::I2C0;
+type I2cSdaPin = peripherals::PIN_0;
+type I2cSclPin = peripherals::PIN_1;
 
-bind_interrupts!(struct I2c1Irqs {
-    I2C1_IRQ => embassy_rp::i2c::InterruptHandler<I2cPeriph>;
+bind_interrupts!(struct I2c0Irqs {
+    I2C0_IRQ => embassy_rp::i2c::InterruptHandler<I2cPeriph>;
 });
 
 struct AsyncI2c {
     pub i2c: I2cPeriph,
     pub sda_pin: I2cSdaPin,
     pub scl_pin: I2cSclPin,
-    pub interrupt: I2c1Irqs,
+    pub interrupt: I2c0Irqs,
 }
 
 pub type AsyncI2cPeripheral = embassy_rp::i2c::I2c<'static, I2cPeriph, embassy_rp::i2c::Async>;
@@ -236,10 +236,10 @@ fn assemble_peripherals() -> AllPeripherals {
     defmt::info!("Peripherals initialized");
     
     let async_i2c = AsyncI2c {
-        i2c: p.I2C1,
-        sda_pin: p.PIN_2,
-        scl_pin: p.PIN_3,
-        interrupt: I2c1Irqs,
+        i2c: p.I2C0,
+        sda_pin: p.PIN_0,
+        scl_pin: p.PIN_1,
+        interrupt: I2c0Irqs,
     };
 
     let uart_sbus = UartSbus {
