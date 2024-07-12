@@ -38,7 +38,7 @@ impl AsyncI2c {
 // UART perihperal for sbus
 
 type UartSbusPeriph = peripherals::UART1;
-type UartSbusRxPin = peripherals::PIN_9;
+type UartSbusRxPin = peripherals::PIN_5;
 type UartSbusDma = peripherals::DMA_CH1;
 
 bind_interrupts!(struct UartSbusIrqs {
@@ -244,7 +244,7 @@ fn assemble_peripherals() -> AllPeripherals {
 
     let uart_sbus = UartSbus {
         uart: p.UART1,
-        rx_pin: p.PIN_9,
+        rx_pin: p.PIN_5,
         dma: p.DMA_CH1,
         interrupt: UartSbusIrqs,
     };
