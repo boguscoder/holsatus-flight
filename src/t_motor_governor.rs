@@ -49,7 +49,7 @@ bitflags::bitflags! {
         const RX_FAILSAFE   = 1 << 11;
 
         /// **Bit 12** - The flight controller has established a USB connection.
-        const USB_CONNECTED = 1 << 12;
+        // const USB_CONNECTED = 1 << 12;
 
         /// **Bit 13** - The `CMD_DISARM` flag must be raised once before arming can continue.
         const MUST_DISARM    = 1 << 13;

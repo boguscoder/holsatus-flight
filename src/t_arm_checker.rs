@@ -107,9 +107,9 @@ pub async fn arm_checker() -> ! {
         }
 
         // Check if the USB is connected
-        if let Some(usb_connected) = rcv_usb_connected.try_changed() {
-            local_arm_blocker_flag.set(ArmBlocker::USB_CONNECTED, usb_connected);
-        }
+        // if let Some(usb_connected) = rcv_usb_connected.try_changed() {
+        //     local_arm_blocker_flag.set(ArmBlocker::USB_CONNECTED, usb_connected);
+        // }
 
         // Check if the boot grace period has passed
         let boot_grace = Instant::MIN.elapsed() < Duration::from_secs(5);

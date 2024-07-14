@@ -70,10 +70,10 @@ impl UartSbus {
 // Dshot motor driver
 
 type PioDshotPeriph = peripherals::PIO0;
-type PioDshotPin0 = peripherals::PIN_10;
-type PioDshotPin1 = peripherals::PIN_11;
-type PioDshotPin2 = peripherals::PIN_12;
-type PioDshotPin3 = peripherals::PIN_13;
+type PioDshotPin0 = peripherals::PIN_11;
+type PioDshotPin1 = peripherals::PIN_20;
+type PioDshotPin2 = peripherals::PIN_15;
+type PioDshotPin3 = peripherals::PIN_16;
 
 bind_interrupts!(struct PioDshotIqrs {
    PIO0_IRQ_0 => embassy_rp::pio::InterruptHandler<PioDshotPeriph>; 
@@ -251,10 +251,10 @@ fn assemble_peripherals() -> AllPeripherals {
 
     let motor_driver = MotorDriver {
         pio: p.PIO0,
-        pin_0: p.PIN_10,
-        pin_1: p.PIN_11,
-        pin_2: p.PIN_12,
-        pin_3: p.PIN_13,
+        pin_0: p.PIN_11,
+        pin_1: p.PIN_20,
+        pin_2: p.PIN_15,
+        pin_3: p.PIN_16,
         interrupt: PioDshotIqrs,
     };
 

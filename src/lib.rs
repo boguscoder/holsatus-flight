@@ -4,8 +4,8 @@
 #![feature(async_closure)]
 #![no_std]
 
-pub const N_IMU: usize = 2;
-pub const N_MAG: usize = 2;
+pub const N_IMU: usize = 1;
+pub const N_MAG: usize = 1;
 
 pub static I2C_ASYNC: StaticCell<Mutex<ThreadModeRawMutex, crate::bsp::AsyncI2cPeripheral>> = StaticCell::new();
 pub type AsyncI2cDevice = I2cDevice<'static, ThreadModeRawMutex, crate::bsp::AsyncI2cPeripheral>;

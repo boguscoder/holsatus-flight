@@ -30,14 +30,8 @@ use crate::{
 pub const RP2040_DEV_CONFIG: Configuration = Configuration {
     key: CFG_KEY,
     imu_cfg: [Some(ImuConfig {
-            acc_cal: Some(Calibration {
-                scale: Vector3::new(0.9941048, 0.9951916, 0.987686),
-                offset: Vector3::new(-0.08339453, -0.21677876, 0.27320194)
-            }),
-        gyr_cal: Some(Calibration {
-            scale: Vector3::new(1.0, 1.0, 1.0),
-            offset: Vector3::new(-0.01429255, 0.020241564, 0.0021124864)
-        }),
+            acc_cal: None,
+        gyr_cal: None,
         imu_ext: Some(Extrinsics {
             rotation: rotation_matrices::Rotation::RotX180,
             translation: VEC_ZEROS,
@@ -52,12 +46,12 @@ pub const RP2040_DEV_CONFIG: Configuration = Configuration {
             acc_odr: 0,
             gyr_odr: 0,
         })),
-    }), None],
+    })],
     imu_freq: 1000,
     mag_cfg: [Some(MagConfig {
         mag_cal: None,
         mag_ext: None,
-    }), None],
+    })],
     mag_freq: 100,
     attpids: AttitudePids {
         roll_inner: PidConfig {

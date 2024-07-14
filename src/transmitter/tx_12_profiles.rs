@@ -6,8 +6,8 @@ pub const TX12_8CH_DEFAULT_MAP: TransmitterMap = TransmitterMap ([
     ChannelType::Analog((
         AnalogCommand::Roll,
         AnalogConfig {
-            in_min: 172,
-            in_max: 1810,
+            in_min: 243,
+            in_max: 1805,
             deadband: 2,
             fullrange: true,
             reverse: false,
@@ -19,8 +19,8 @@ pub const TX12_8CH_DEFAULT_MAP: TransmitterMap = TransmitterMap ([
     ChannelType::Analog((
         AnalogCommand::Pitch,
         AnalogConfig {
-            in_min: 172,
-            in_max: 1810,
+            in_min: 243,
+            in_max: 1805,
             deadband: 2,
             fullrange: true,
             reverse: true,
@@ -32,8 +32,8 @@ pub const TX12_8CH_DEFAULT_MAP: TransmitterMap = TransmitterMap ([
     ChannelType::Analog((
         AnalogCommand::Thrust,
         AnalogConfig {
-            in_min: 172,
-            in_max: 1810,
+            in_min: 240,
+            in_max: 1805,
             deadband: 2,
             fullrange: false,
             reverse: false,
@@ -45,35 +45,34 @@ pub const TX12_8CH_DEFAULT_MAP: TransmitterMap = TransmitterMap ([
     ChannelType::Analog((
         AnalogCommand::Yaw,
         AnalogConfig {
-            in_min: 172,
-            in_max: 1810,
+            in_min: 240,
+            in_max: 1805,
             deadband: 2,
             fullrange: true,
             reverse: false,
             rates: Rates::new_standard(0.5, 20., 150.) 
         }
     )),
-
-    // Channel 4 - Switch E
+    
+    // Channel 4 - Switch C
     ChannelType::Discrete([
-        (172, EventRequest::Unbound),
-        (992, EventRequest::AbortAccCalib),
-        (1810, EventRequest::StartAccCalib),
-    ]),
-
-    // Channel 5 - Switch B
-    ChannelType::Discrete([
-        (172, EventRequest::AngleMode),
+        (240, EventRequest::DisarmMotors),
         (992, EventRequest::Unbound),
-        (1810, EventRequest::RateMode),
+        (1750, EventRequest::ArmMotors),
+    ]),
+    // Channel 5 - Switch E
+    ChannelType::Discrete([
+        (240, EventRequest::Unbound),
+        (992, EventRequest::AbortAccCalib),
+        (1805, EventRequest::StartAccCalib),
+    ]),
+    // Channel 6 - Switch B
+    ChannelType::Discrete([
+        (240, EventRequest::AngleMode),
+        (992, EventRequest::Unbound),
+        (1805, EventRequest::RateMode),
         ]),
 
-    // Channel 6 - Switch C
-    ChannelType::Discrete([
-        (172, EventRequest::DisarmMotors),
-        (992, EventRequest::Unbound),
-        (1810, EventRequest::ArmMotors),
-    ]),
 
     // Channel 7 - Switch F
     ChannelType::Discrete([
