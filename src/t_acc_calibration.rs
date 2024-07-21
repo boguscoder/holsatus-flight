@@ -208,23 +208,22 @@ impl <const N: usize> AccCalibrator<N> {
 
         if self.is_done() {
 
-            defmt::info!("[ACC CALIB]: Calibration finished!");
-
             let calib = &self.measured_gravity;
-    
+            
             let offset = Vector3::new(
                 (calib.x_plus + calib.x_minus) / 2.0,
                 (calib.y_plus + calib.y_minus) / 2.0,
                 (calib.z_plus + calib.z_minus) / 2.0,
             );
-        
+            
             let scale = Vector3::new(
                 G_GRAVITY / (calib.x_plus - calib.x_minus) * 2.0,
                 G_GRAVITY / (calib.y_plus - calib.y_minus) * 2.0,
                 G_GRAVITY / (calib.z_plus - calib.z_minus) * 2.0,
             );
-        
+            
             self.calib = Some(Calibration { offset, scale });
+            defmt::info!("[ACC CALIB]: Calibration finished! - {:?}", defmt::Debug2Format(&self.calib));
         }
     }
 
