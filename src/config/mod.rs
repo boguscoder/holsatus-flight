@@ -34,7 +34,10 @@ pub const RP2040_DEV_CONFIG: Configuration = Configuration {
                 scale: Vector3::new(0.99897575, 0.99937946, 0.9909843),
                 offset: Vector3::new(-0.010874271, -0.22447443, 0.18229008)
             }),
-        gyr_cal: None,
+        gyr_cal: Some(Calibration{
+                scale: Vector3::new(1.0, 1.0, 1.0),
+                offset: Vector3::new(0.001261107, -0.0057734204, -0.003666254),
+        }),
         imu_ext: Some(Extrinsics {
             rotation: rotation_matrices::Rotation::RotX180,
             translation: VEC_ZEROS,
