@@ -2,7 +2,7 @@
 target = "thumbv6m-none-eabi"
 
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-runner = "elf2uf2-rs --deploy --serial"
+runner = "elf2uf2-rs --deploy"
 
 rustflags = [
   "-C", "linker=flip-link",

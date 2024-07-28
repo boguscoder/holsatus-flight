@@ -122,7 +122,7 @@ pub const RP2040_DEV_CONFIG: Configuration = Configuration {
         },
     },
     dshot_speed: DshotSpeed::Dshot300,
-    motor_dir: [false, false, false, true],
+    motor_dir: [false, true, false, true],
     mav_freq: MavStreamableFrequencies {
         heartbeat: Some(Duration::from_hz(1)),
         system_time: None,
