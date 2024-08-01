@@ -18,6 +18,8 @@ pub async fn mag_governor() {
     // Setup sensor redundancy manager
     let mut imu_redundancy = crate::sensors::SensorRedundancy::<4>::default();
 
+    snd_mag_active_id.send(imu_redundancy.active_id());
+
     'infinite: loop {
         
         // Wait for data from any MAG sensor
