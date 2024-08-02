@@ -490,6 +490,13 @@ where
                         .map_err(|_|ErrorKind::Other)
                 }).await
             },
+            StreamCommand::MotorSpeeds => {
+                let header = "[ M0    M1    M2    M3 ]";
+                stream(&msg::MOTOR_SPEEDS, cli, rx, buffer, false, 5, Some(header), |spd, w| {
+                    w.write_fmt(format_args!("[{:0>4}, {:0>4}, {:0>4}, {:0>4}]", 
+                        spd[0], spd[1], spd[2], spd[3])).map_err(|_|ErrorKind::Other)
+                }).await
+            },
         }
     };
 
@@ -792,6 +799,9 @@ enum StreamCommand {
 
     /// Stream the arming blocker flag to the shell
     ArmBlocker,
+
+    /// Stream current calculated motor speeds
+    MotorSpeeds,
 
     /// Stream attitude data to the shell
     Attitude {
